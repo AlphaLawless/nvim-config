@@ -2,7 +2,6 @@
 require "user.colorscheme"
 require "user.lsp"
 require "user.plugins"
-require "user.toggleterm"
 require "user.nvim-functions"
 
 -- General commands of neovim
@@ -25,5 +24,6 @@ require "plug-config.lualine"
 require "plug-config.nvim-tree"
 require "plug-config.telescope"
 require "plug-config.project"
+require "plug-config.toggleterm"
 require "plug-config.treesitter"
 require "plug-config.whichkey"
