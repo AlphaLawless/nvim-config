@@ -17,7 +17,7 @@ local servers = {
   "kotlin_language_server", -- Kotlin
   "graphql", -- GraphQL
   "elixirls", -- Elixir
-  "hls", -- Haskell
+  -- "hls", -- Haskell
   "bashls", -- Bash
   "jsonls", -- Json
   "yamlls", -- Yaml
