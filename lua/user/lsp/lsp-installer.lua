@@ -24,7 +24,6 @@ local servers = {
   "rust_analyzer", -- Rust
   "emmet_ls", -- Emmet
   "dockerls", -- Docker
-  "denols", -- Deno
   "solargraph", -- Ruby
 }
 

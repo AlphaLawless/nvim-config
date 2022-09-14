@@ -18,7 +18,7 @@ null_ls.setup({
     formatting.prettier.with {
       extra_filetypes = { "toml" },
       extra_args = {
-        "--no-semi",
+        "--semi",
         "--double-quote",
         "--jsx-double-quote"
       },
