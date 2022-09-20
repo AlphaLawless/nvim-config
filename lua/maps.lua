@@ -52,10 +52,10 @@ keymap('', '<C-j>', '<C-w>j', opts)
 keymap('', '<C-l>', '<C-w>l', opts)
 
 -- Resize window
-keymap('n', '<C-w><left>', ':vertical resize -2<CR>', opts)
-keymap('n', '<C-w><right>', ':vertical resize +2<CR>', opts)
-keymap('n', '<C-w><up>', ':resize -2<CR>', opts)
-keymap('n', '<C-w><down>', ':resize +2<CR>', opts)
+keymap('n', '<M-h>', ':vertical resize -2<CR>', opts)
+keymap('n', '<M-l>', ':vertical resize +2<CR>', opts)
+keymap('n', '<M-k>', ':resize -2<CR>', opts)
+keymap('n', '<M-j>', ':resize +2<CR>', opts)
 
 -- Desable arrow keys for Vim Hardmode
 for key = 1, #arrowKeys do
