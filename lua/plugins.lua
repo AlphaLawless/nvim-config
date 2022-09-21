@@ -17,9 +17,23 @@ packer.startup(function(use)
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'neovim/nvim-lspconfig' -- LSP
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
-  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
+
+  use 'hrsh7th/nvim-cmp' -- Completion framework
+
   use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-  use 'hrsh7th/nvim-cmp' -- Completion
+  use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/vim-vsnip'
+
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
   use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use 'MunifTanjim/prettier.nvim' -- Prettier plugin for Neovim's built-in LSP client
   use 'glepnir/lspsaga.nvim' -- LSP UIs
@@ -38,6 +52,8 @@ packer.startup(function(use)
   use 'windwp/nvim-ts-autotag'
   use 'norcalli/nvim-colorizer.lua'
   use 'folke/zen-mode.nvim'
+
+  use 'simrat39/rust-tools.nvim' -- tools to automacally set up lspconfig for rust-analyzer
 
   use {
     "iamcco/markdown-preview.nvim",
