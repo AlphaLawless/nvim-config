@@ -23,6 +23,7 @@ vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.fileencoding = 'utf-8'
+vim.opt.showmode = false
 vim.opt.ai = true -- Auto indent
 vim.opt.si = true -- Smart indent
 vim.opt.wrap = false -- No wrap lines
