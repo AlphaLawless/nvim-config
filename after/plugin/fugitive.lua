@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 local TheGroup = vim.api.nvim_create_augroup("AlphaLawless", {})
-
+local remap = vim.keymap.set
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("BufWinEnter", {
     group = TheGroup,
@@ -13,12 +13,16 @@ autocmd("BufWinEnter", {
 
         local bufnr = vim.api.nvim_get_current_buf()
         local opts = {buffer = bufnr, remap = false}
-        vim.keymap.set("n", "<leader>p", function()
+        remap("n", "<leader>p", function()
             vim.cmd.Git('push')
         end, opts)
 
+        remap("n", "<leader>gdf", function ()
+          vim.cmd.Git('diff')
+        end, opts)
+
         -- rebase always
-        vim.keymap.set("n", "<leader>P", function()
+        remap("n", "<leader>P", function()
             vim.cmd.Git({'pull',  '--rebase'})
         end, opts)
 
