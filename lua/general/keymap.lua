@@ -11,17 +11,25 @@ remap("n", "<leader>ww", ':lua require"util".save_file()<CR>', silent_opt)
 -- confirm to quit or just quit
 remap("n", "<leader>Q", ':lua require"util".confirm_quit()<CR>', silent_opt)
 
+remap("v", "J", ":m '>+1<CR>gv=gv")
+remap("n", "<leader>pv", vim.cmd.Ex)
+
 -- new tab
 remap("n", "te", ":tabedit<CR>", silent_opt)
 
-remap("v", "J", ":m '>+1<CR>gv=gv")
-remap("n", "<leader>pv", vim.cmd.Ex)
+-- navigate between buffers
+remap("n", "<leader><S-l>", ":bnext<CR>", silent_opt)
+remap("n", "<leader><S-h>", ":bprevious<CR>", silent_opt)
 
 -- Increment/Decrement
 remap("n", "+", "<C-a>")
 remap("n", "-", "<C-x>")
 
 remap("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Stay in indent mode
+remap("v", "<", "<gv", silent_opt)
+remap("v", ">", ">gv", silent_opt)
 
 remap("n", "J", "mzJ`z")
 remap("n", "<C-d>", "<C-d>zz")

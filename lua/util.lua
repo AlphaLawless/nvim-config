@@ -70,13 +70,11 @@ M.save_file = function()
   if filepath == '' then -- The buffer is [No Name]
     local cwd = vim.fn.getcwd() .. "/"
     local newpath = vim.fn.input("Enter new file path: ", cwd)
-    if newpath ~= cwd then -- Don't save if the user didn't enter anything
-      local newdir = vim.fn.fnamemodify(newpath, ":h") -- Get the directory of newpath
+    if newpath ~= cwd then
+      local newdir = vim.fn.fnamemodify(newpath, ":h")
       if vim.fn.isdirectory(newdir) and vim.fn.filewritable(newdir) == 2 then
-        -- The directory exists and we have write permission, use the normal :write command
         vim.cmd('write ' .. vim.fn.fnameescape(newpath))
       else
-        -- The directory doesn't exist or we don't have write permission, use M.sudo_write
         M.sudo_write(nil, newpath)
         vim.cmd('edit ' .. newpath)
       end
