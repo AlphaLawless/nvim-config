@@ -14,6 +14,8 @@ local remap = vim.keymap.set
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
+
+-- More configurations here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lsp.ensure_installed({
   'tsserver',
   'eslint',
@@ -23,7 +25,13 @@ lsp.ensure_installed({
   'cssls',
   'pyright',
   'graphql',
-  'clangd'
+  'clangd',
+  'dockerls',
+  'elixirls',
+  'gopls',
+  'clojure_lsp',
+  'emmet_ls',
+  'ruby_ls'
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
