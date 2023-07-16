@@ -1,0 +1,15 @@
+{
+  "snippets": {
+    "prefix": "snippets",
+    "body": [
+      "{",
+      "  \"$1\": {",
+      "    \"prefix\": \"$2\",",
+      "    \"body\": \"$3\",",
+      "    \"description\": \"$4\"",
+      "  }",
+      "}"
+    ],
+    "description": "Skeleton to create another snippets in neovim"
+  }
+}

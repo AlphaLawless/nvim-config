@@ -1,5 +1,3 @@
-local actions = require('telescope.actions')
-
 local M = {}
 
 function M._echo_multiline(msg)

@@ -1,0 +1,7 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": ["#include <iostream>\n\nusing namespace std;\n\nint main() { \n  $1\n  return 0;\n}"],
+    "description": "main function in C++"
+  }
+}

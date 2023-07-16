@@ -14,12 +14,28 @@
         "path": "./rust.json"
       },
       {
+        "language": "c",
+        "path": "./c.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./cpp.json"
+      },
+      {
+        "language": "json",
+        "path": "./json.json"
+      },
+      {
         "language": "typescriptreact",
         "path": "./typescriptreact.json"
       },
       {
         "language": "zig",
         "path": "./zig.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
       },
       {
         "language": "javascriptreact",

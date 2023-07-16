@@ -1,0 +1,7 @@
+{
+  "main": {
+    "prefix": "main",
+    "body": ["#include <stdio.h>\n\nint main() { \n  $1\n  return 0;\n}"],
+    "description": "Create a main function"
+  }
+}
