@@ -6,14 +6,38 @@ local ok_lsp, lsp = pcall(require, 'lsp-zero')
 if not ok_lsp then
   return
 end
+local ok_snip, luasnip = pcall(require, 'luasnip')
+if not ok_snip then
+  return
+end
+local ok_lspconf, lspconfig = pcall(require, 'lspconfig')
+if not ok_lspconf then
+  return
+end
+
+local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local _attach = function(client)
+  vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+  client.server_capabilities.semanticTokensProvider = nil
+  local orignal = vim.notify
+  local mynotify = function(msg, level, opts)
+    if msg == 'No code actions available' or msg:find('overly') then
+      return
+    end
+    orignal(msg, level, opts)
+  end
+
+  vim.notify = mynotify
+end
 
 lsp.preset({ "recommeded" })
 
 local remap = vim.keymap.set
-
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
 
 -- More configurations here: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lsp.ensure_installed({
@@ -31,7 +55,8 @@ lsp.ensure_installed({
   'gopls',
   'clojure_lsp',
   'emmet_ls',
-  'ruby_ls'
+  'ruby_ls',
+  'bashls'
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -44,6 +69,29 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     behavior = cmp.ConfirmBehavior.Replace,
     select = true,
   }),
+  ["<Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_next_item()
+      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+      -- they way you will only jump inside the snippet region
+    elseif luasnip.expand_or_jumpable() then
+      luasnip.expand_or_jump()
+    elseif has_words_before() then
+      cmp.complete()
+    else
+      fallback()
+    end
+  end, { "i", "s" }),
+
+  ["<S-Tab>"] = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_prev_item()
+    elseif luasnip.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, { "i", "s" }),
 })
 
 lsp.set_preferences({
@@ -75,6 +123,30 @@ lsp.on_attach(function(client, bufnr)
   remap("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
   remap('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, opts)
 end)
+
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+
+lspconfig.rust_analyzer.setup({
+  on_attach = _attach,
+  settings = {
+    ['rust-analyzer'] = {
+      imports = {
+        granularity = {
+          group = 'module',
+        },
+        prefix = 'self',
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
+})
 
 lsp.setup()
 
