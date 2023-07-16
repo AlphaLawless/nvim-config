@@ -4,5 +4,7 @@ if not ok then
 end
 
 npairs.setup({
-  map_cr = false
+  map_cr = true,
+  enable_check_bracket_line = false,
+  disable_filetype = { "TelescopePrompt" , "vim" },
 })
