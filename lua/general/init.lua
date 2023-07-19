@@ -1,3 +1,3 @@
-require("general.keymap")
-require("general.option")
-require("general.function")
+require("general.keymaps")
+require("general.options")
+require("general.functions")
