@@ -11,7 +11,7 @@
 
 1. First Step
 ```bash
-mv ~/.config/nvim ~/.config/nvim.bak && git clone https://github.com/AlphaLawless/nvim-config ~/.config/nvim
+mv ~/.config/nvim ~/.config/nvim.bak || true && git clone https://github.com/AlphaLawless/nvim-config ~/.config/nvim
 ```
 2. Second Step (WIP)
 ```bash
